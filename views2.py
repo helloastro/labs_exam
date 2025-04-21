@@ -13,8 +13,10 @@ from matplotlib.figure import Figure
 from flask import request, render_template, Response, redirect, url_for, make_response, session, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
-from webapp2 import app
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://madang:madang@localhost:3306/madangdb'
+from src_web.webapp2 import app
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../lab.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://madang:madang@localhost:3306/madangdb'
 db = SQLAlchemy(app)
 
 @app.route('/iris/list')
