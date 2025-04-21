@@ -15,8 +15,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from src_web.webapp2 import app
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../lab.db'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://madang:madang@localhost:3306/madangdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://madang:madang@localhost:3306/madangdb'
 db = SQLAlchemy(app)
 
 @app.route('/iris/list')
@@ -34,8 +33,8 @@ def iris_ajax_list():
 def iris_ajax_model():
     jsons = request.form.to_dict(flat=False)
 
-    iris_names = joblib.load('webapp2/ml/iris_names.pkl')
-    df_clf = joblib.load('webapp2/ml/iris_model.pkl')
+    iris_names = joblib.load('src_web/webapp2/ml/iris_names.pkl')
+    df_clf = joblib.load('src_web/webapp2/ml/iris_model.pkl')
     label = df_clf.predict([[jsons['sl'][0], jsons['sw'][0], jsons['pl'][0], jsons['pw'][0]]])
 
     return {'result':iris_names[label][0]} 
